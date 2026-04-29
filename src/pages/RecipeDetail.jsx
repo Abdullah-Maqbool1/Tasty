@@ -52,41 +52,41 @@ const RecipeDetail = () => {
   const videoEmbed = meal?.strYoutube?.replace('watch?v=', 'embed/');
 
   if (loading) {
-    return <div className="rounded-3xl border border-slate-800 bg-slate-900 p-8 text-center text-slate-400">Loading recipe details…</div>;
+    return <div className="border-4 border-black dark:border-white bg-white dark:bg-black p-8 text-center text-black dark:text-white font-black">Loading recipe details…</div>;
   }
 
   if (error || !meal) {
-    return <div className="rounded-3xl border border-rose-500 bg-rose-500/10 p-8 text-center text-rose-200">{error || 'Recipe not found.'}</div>;
+    return <div className="border-4 border-red-600 bg-red-100 dark:bg-red-900 p-8 text-center text-red-700 dark:text-red-200 font-black">{error || 'Recipe not found.'}</div>;
   }
 
   return (
     <div className="w-full space-y-10" ref={detailRef}>
       <section className="grid w-full gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-        <div className="rounded-[2rem] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/90 p-6 sm:p-8">
-          <img alt={meal.strMeal} src={meal.strMealThumb} className="w-full rounded-3xl object-cover" />
-          <div className="mt-6 space-y-4">
+        <div className="border-4 border-black dark:border-white bg-white dark:bg-black p-8">
+          <img alt={meal.strMeal} src={meal.strMealThumb} className="w-full object-cover" />
+          <div className="mt-6 space-y-4 border-t-4 border-black dark:border-white pt-6">
             <div className="flex flex-wrap items-center gap-3">
-              <span className="rounded-full bg-emerald-500/15 px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-emerald-300">{meal.strCategory}</span>
-              <span className="rounded-full bg-slate-800 px-3 py-1 text-xs text-slate-400">{meal.strArea}</span>
+              <span className="bg-yellow-300 px-3 py-1 text-xs font-black uppercase text-black">{meal.strCategory}</span>
+              <span className="border-2 border-black dark:border-white px-3 py-1 text-xs font-black text-black dark:text-white">{meal.strArea}</span>
             </div>
-            <h1 className="text-4xl font-semibold text-white">{meal.strMeal}</h1>
-            <p className="text-slate-300">{meal.strTags ? meal.strTags.split(',').join(' · ') : 'Detailed cooking instructions, ingredients, and a video tutorial.'}</p>
+            <h1 className="text-4xl md:text-5xl font-black text-black dark:text-white leading-tight">{meal.strMeal}</h1>
+            <p className="text-lg font-bold text-black dark:text-white">{meal.strTags ? meal.strTags.split(',').join(' · ') : 'Detailed cooking instructions, ingredients, and a video tutorial.'}</p>
             <button
               type="button"
               onClick={() => (isFavorite(meal.idMeal) ? removeFavorite(meal) : addFavorite(meal))}
-              className="rounded-full bg-emerald-500 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-400"
+              className="border-4 border-black dark:border-white bg-yellow-300 px-6 py-3 text-sm font-black text-black transition hover:bg-yellow-400 active:translate-x-1 active:translate-y-1"
             >
-              {isFavorite(meal.idMeal) ? 'Remove from saved' : 'Save recipe'}
+              {isFavorite(meal.idMeal) ? '★ SAVED' : '☆ SAVE'}
             </button>
           </div>
         </div>
 
         <div className="space-y-6">
-          <div className="rounded-[2rem] border border-slate-800 bg-slate-900/90 p-8 shadow-xl shadow-slate-950/20">
-            <h2 className="text-2xl font-semibold text-white">Ingredients</h2>
-            <ul className="mt-4 grid gap-2 text-slate-300 sm:grid-cols-2">
+          <div className="border-4 border-black dark:border-white bg-white dark:bg-black p-8">
+            <h2 className="text-3xl font-black text-black dark:text-white">INGREDIENTS</h2>
+            <ul className="mt-6 grid gap-3 text-black dark:text-white font-bold sm:grid-cols-2">
               {ingredients.map((item) => (
-                <li key={item} className="rounded-2xl border border-slate-800 bg-slate-950 px-4 py-3">
+                <li key={item} className="border-3 border-black dark:border-white bg-white dark:bg-black px-3 py-2">
                   {item}
                 </li>
               ))}
@@ -94,21 +94,21 @@ const RecipeDetail = () => {
           </div>
 
           {videoEmbed ? (
-            <div className="rounded-[2rem] border border-slate-800 bg-slate-900/90 p-0 shadow-xl shadow-slate-950/20">
+            <div className="border-4 border-black dark:border-white bg-black p-0 overflow-hidden">
               <iframe
                 title="Cooking tutorial"
                 src={videoEmbed}
                 allowFullScreen
-                className="h-72 w-full rounded-[2rem]"
+                className="h-72 w-full"
               />
             </div>
           ) : null}
         </div>
       </section>
 
-      <section className="rounded-[2rem] border border-slate-800 bg-slate-900/90 p-8 shadow-xl shadow-slate-950/20">
-        <h2 className="text-2xl font-semibold text-white">Instructions</h2>
-        <p className="mt-4 whitespace-pre-line text-slate-300">{meal.strInstructions}</p>
+      <section className="border-4 border-black dark:border-white bg-white dark:bg-black p-8">
+        <h2 className="text-3xl font-black text-black dark:text-white">INSTRUCTIONS</h2>
+        <p className="mt-6 whitespace-pre-line text-lg font-bold text-black dark:text-white leading-relaxed">{meal.strInstructions}</p>
       </section>
     </div>
   );

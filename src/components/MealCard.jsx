@@ -2,16 +2,16 @@ import { Link } from 'react-router-dom';
 
 const MealCard = ({ meal, actionLabel, onAction, isFavorite }) => {
   return (
-    <article className="group overflow-hidden rounded-3xl border border-slate-800 bg-slate-900 shadow-xl shadow-slate-950/30 transition hover:-translate-y-1 hover:border-slate-700">
-      <Link to={`/recipe/${meal.idMeal}`} className="block">
-        <img alt={meal.strMeal} src={meal.strMealThumb} className="h-56 w-full object-cover transition duration-300 group-hover:scale-105" />
+    <article className="border-4 border-black dark:border-white bg-white dark:bg-black shadow-lg dark:shadow-[8px_8px_0_rgba(255,255,255,0.3)] hover:shadow-xl hover:translate-x-1 hover:-translate-y-1 transition">
+      <Link to={`/recipe/${meal.idMeal}`} className="block overflow-hidden">
+        <img alt={meal.strMeal} src={meal.strMealThumb} className="w-full h-48 object-cover hover:scale-110 transition duration-500" />
       </Link>
-      <div className="space-y-3 p-4">
-        <div className="flex items-center justify-between gap-3">
-          <h3 className="text-lg font-semibold text-white">{meal.strMeal}</h3>
+      <div className="p-4 border-t-4 border-black dark:border-white space-y-3">
+        <div className="flex items-start justify-between gap-3">
+          <h3 className="text-lg font-black text-black dark:text-white leading-tight">{meal.strMeal}</h3>
           {typeof isFavorite === 'boolean' ? (
-            <span className="rounded-full bg-emerald-500 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-slate-950">
-              {isFavorite ? 'Saved' : 'Save'}
+            <span className="bg-yellow-300 text-black px-3 py-1 text-xs font-black uppercase">
+              {isFavorite ? '★' : '☆'}
             </span>
           ) : null}
         </div>
@@ -19,7 +19,7 @@ const MealCard = ({ meal, actionLabel, onAction, isFavorite }) => {
           <button
             type="button"
             onClick={() => onAction?.(meal)}
-            className="w-full rounded-full bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-white"
+            className="w-full border-4 border-black dark:border-white px-4 py-3 text-sm font-black text-black dark:text-black bg-yellow-300 dark:bg-white transition hover:bg-black hover:text-white dark:hover:bg-black dark:hover:text-white active:translate-x-1 active:translate-y-1"
           >
             {actionLabel}
           </button>

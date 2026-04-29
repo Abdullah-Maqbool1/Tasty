@@ -35,64 +35,64 @@ const Contact = () => {
 
   return (
     <div className="w-full space-y-10">
-      <section className="w-full rounded-[2rem] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/90 p-6 sm:p-8">
-        <h1 className="text-3xl font-semibold text-slate-900 dark:text-white">Contact Us</h1>
-        <p className="mt-2 text-slate-600 dark:text-slate-400">Have feedback or a recipe request? Send us a message and we'll get back to you shortly.</p>
+      <section className="w-full border-4 border-black dark:border-white bg-white dark:bg-black p-8">
+        <h1 className="text-4xl md:text-5xl font-black text-black dark:text-white">CONTACT US</h1>
+        <p className="mt-4 text-lg font-bold text-black dark:text-white">Have feedback or a recipe request? Send us a message and we'll get back to you shortly.</p>
       </section>
 
-      <section className="w-full rounded-[2rem] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/90 p-6 sm:p-8">
-        {success ? <div className="mb-6 rounded-3xl bg-emerald-500/10 p-5 text-emerald-200">{success}</div> : null}
+      <section className="w-full border-4 border-black dark:border-white bg-white dark:bg-black p-8">
+        {success ? <div className="mb-6 border-4 border-green-600 bg-green-100 dark:bg-green-900 p-5 text-green-700 dark:text-green-200 font-black">{success}</div> : null}
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid gap-6 sm:grid-cols-2">
-            <label className="space-y-2 text-sm text-slate-300">
-              Name
+            <label className="space-y-3 text-sm text-black dark:text-white font-bold">
+              NAME
               <input
                 name="name"
                 value={form.name}
                 onChange={handleChange}
-                className="w-full rounded-3xl border border-slate-800 bg-slate-950 px-4 py-3 text-white outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20"
+                className="w-full border-4 border-black dark:border-white bg-white dark:bg-black px-4 py-3 text-black dark:text-white font-bold outline-none focus:bg-black dark:focus:bg-white focus:text-white dark:focus:text-black"
               />
-              {errors.name ? <span className="text-sm text-rose-400">{errors.name}</span> : null}
+              {errors.name ? <span className="text-sm text-red-600 dark:text-red-400 font-black block">{errors.name}</span> : null}
             </label>
 
-            <label className="space-y-2 text-sm text-slate-300">
-              Email
+            <label className="space-y-3 text-sm text-black dark:text-white font-bold">
+              EMAIL
               <input
                 name="email"
                 value={form.email}
                 onChange={handleChange}
-                className="w-full rounded-3xl border border-slate-800 bg-slate-950 px-4 py-3 text-white outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20"
+                className="w-full border-4 border-black dark:border-white bg-white dark:bg-black px-4 py-3 text-black dark:text-white font-bold outline-none focus:bg-black dark:focus:bg-white focus:text-white dark:focus:text-black"
               />
-              {errors.email ? <span className="text-sm text-rose-400">{errors.email}</span> : null}
+              {errors.email ? <span className="text-sm text-red-600 dark:text-red-400 font-black block">{errors.email}</span> : null}
             </label>
           </div>
 
-          <label className="space-y-2 text-sm text-slate-300">
-            Subject
+          <label className="space-y-3 text-sm text-black dark:text-white font-bold">
+            SUBJECT
             <input
               name="subject"
               value={form.subject}
               onChange={handleChange}
-              className="w-full rounded-3xl border border-slate-800 bg-slate-950 px-4 py-3 text-white outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20"
+              className="w-full border-4 border-black dark:border-white bg-white dark:bg-black px-4 py-3 text-black dark:text-white font-bold outline-none focus:bg-black dark:focus:bg-white focus:text-white dark:focus:text-black"
             />
-            {errors.subject ? <span className="text-sm text-rose-400">{errors.subject}</span> : null}
+            {errors.subject ? <span className="text-sm text-red-600 dark:text-red-400 font-black block">{errors.subject}</span> : null}
           </label>
 
-          <label className="space-y-2 text-sm text-slate-300">
-            Message
+          <label className="space-y-3 text-sm text-black dark:text-white font-bold">
+            MESSAGE
             <textarea
               name="message"
               value={form.message}
               onChange={handleChange}
               rows="6"
-              className="w-full rounded-3xl border border-slate-800 bg-slate-950 px-4 py-3 text-white outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20"
+              className="w-full border-4 border-black dark:border-white bg-white dark:bg-black px-4 py-3 text-black dark:text-white font-bold outline-none focus:bg-black dark:focus:bg-white focus:text-white dark:focus:text-black resize-none"
             />
-            {errors.message ? <span className="text-sm text-rose-400">{errors.message}</span> : null}
+            {errors.message ? <span className="text-sm text-red-600 dark:text-red-400 font-black block">{errors.message}</span> : null}
           </label>
 
-          <button className="rounded-3xl bg-emerald-500 px-6 py-4 text-sm font-semibold text-slate-950 transition hover:bg-emerald-400">
-            Send Message
+          <button className="w-full border-4 border-black dark:border-white bg-yellow-300 px-6 py-4 text-sm font-black text-black transition hover:bg-yellow-400 active:translate-x-1 active:translate-y-1">
+            SEND MESSAGE
           </button>
         </form>
       </section>

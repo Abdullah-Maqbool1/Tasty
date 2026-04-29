@@ -40,13 +40,15 @@ const Home = () => {
 
   return (
     <div className="w-full space-y-10">
-      <section className="w-full rounded-[2rem] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/90 p-6 sm:p-8">
+      <section className="w-full border-4 border-black dark:border-white bg-white dark:bg-black p-8">
         <div className="space-y-6">
-          <span className="inline-flex rounded-full bg-emerald-500/15 px-4 py-2 text-sm font-semibold uppercase tracking-[0.24em] text-emerald-300">
-            Recipe & food discovery
+          <span className="inline-block border-4 border-black dark:border-white px-4 py-2 text-xs font-black uppercase text-black dark:text-white">
+            🍳 Recipe & Food Discovery
           </span>
-          <h1 className="text-4xl font-semibold text-white sm:text-5xl">Discover recipes that make every meal feel delicious.</h1>
-          <p className="max-w-2xl text-slate-300">
+          <h1 className="text-5xl md:text-6xl font-black text-black dark:text-white leading-tight">
+            Discover recipes that make every meal feel delicious.
+          </h1>
+          <p className="text-xl font-bold text-black dark:text-white max-w-2xl">
             Browse meals by category, explore full recipes, save your favorites, and contact us for suggestions.
           </p>
           <form onSubmit={handleSearch} className="flex flex-col gap-3 sm:flex-row">
@@ -58,58 +60,58 @@ const Home = () => {
               value={search}
               onChange={(event) => setSearch(event.target.value)}
               placeholder="Search by meal name..."
-              className="min-w-0 flex-1 rounded-3xl border border-slate-800 bg-slate-950 px-5 py-4 text-white outline-none transition focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20"
+              className="min-w-0 flex-1 border-4 border-black dark:border-white bg-white dark:bg-black px-5 py-4 text-black dark:text-white font-bold outline-none focus:bg-black dark:focus:bg-white focus:text-white dark:focus:text-black"
             />
-            <button className="rounded-3xl bg-emerald-500 px-6 py-4 text-sm font-semibold text-slate-950 transition hover:bg-emerald-400">
-              Search
+            <button className="border-4 border-black dark:border-white bg-yellow-300 px-6 py-4 text-sm font-black text-black transition hover:bg-yellow-400 active:translate-x-1 active:translate-y-1">
+              SEARCH
             </button>
           </form>
         </div>
       </section>
 
-      <section className="space-y-6">
+      <section className="space-y-8">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div>
-            <h2 className="text-2xl font-semibold text-white">Categories</h2>
-            <p className="text-slate-400">Quick access to popular recipe collections.</p>
+            <h2 className="text-4xl font-black text-black dark:text-white">CATEGORIES</h2>
+            <p className="text-lg font-bold text-black dark:text-white">Quick access to popular recipe collections.</p>
           </div>
           <button
             type="button"
             onClick={() => navigate('/browse')}
-            className="rounded-full border border-slate-800 bg-slate-900 px-4 py-2 text-sm font-semibold text-slate-200 transition hover:border-emerald-400 hover:text-white"
+            className="border-4 border-black dark:border-white bg-white dark:bg-black px-6 py-3 text-sm font-black text-black dark:text-white transition hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black"
           >
-            Browse all
+            BROWSE ALL
           </button>
         </div>
 
-        <div className="flex flex-wrap gap-3">
+        <div className="flex flex-wrap gap-4">
           {featuredCategories.map((category) => (
             <button
               type="button"
               key={category}
               onClick={() => navigate(`/browse?c=${encodeURIComponent(category)}`)}
-              className="rounded-full border border-slate-800 bg-slate-900 px-4 py-2 text-sm font-medium text-slate-200 transition hover:border-emerald-400 hover:text-white"
+              className="border-4 border-black dark:border-white bg-white dark:bg-black px-6 py-3 text-sm font-black text-black dark:text-white transition hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black"
             >
-              {category}
+              {category.toUpperCase()}
             </button>
           ))}
         </div>
       </section>
 
-      <section className="space-y-4">
+      <section className="space-y-6">
         <div className="flex items-center justify-between gap-4">
           <div>
-            <h2 className="text-2xl font-semibold text-white">Popular Today</h2>
-            <p className="text-slate-400">A selection of tasty meals from TheMealDB.</p>
+            <h2 className="text-4xl font-black text-black dark:text-white">POPULAR TODAY</h2>
+            <p className="text-lg font-bold text-black dark:text-white">A selection of tasty meals from TheMealDB.</p>
           </div>
         </div>
 
         {loading ? (
-          <div className="rounded-3xl border border-slate-800 bg-slate-900 p-8 text-center text-slate-400">Loading popular meals…</div>
+          <div className="border-4 border-black dark:border-white bg-white dark:bg-black p-8 text-center text-black dark:text-white font-black">Loading popular meals…</div>
         ) : error ? (
-          <div className="rounded-3xl border border-rose-500 bg-rose-500/10 p-8 text-center text-rose-200">{error}</div>
+          <div className="border-4 border-red-600 bg-red-100 dark:bg-red-900 p-8 text-center text-red-700 dark:text-red-200 font-black">{error}</div>
         ) : (
-          <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {popular.map((meal) => (
               <MealCard key={meal.idMeal} meal={meal} />
             ))}
