@@ -19,7 +19,7 @@ const Home = () => {
 
       try {
         const response = await axios.get('https://www.themealdb.com/api/json/v1/1/filter.php?c=Seafood');
-        setPopular(response.data.meals.slice(0, 6));
+        setPopular(response.data.meals.slice(0, 30));
       } catch {
         setError('Unable to load featured meals.');
       } finally {
