@@ -60,33 +60,33 @@ const RecipeDetail = () => {
   }
 
   return (
-    <div className="w-full space-y-10" ref={detailRef}>
-      <section className="grid w-full gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-        <div className="border-4 border-black dark:border-white bg-white dark:bg-black p-8">
+    <div className="w-full space-y-6 sm:space-y-8 lg:space-y-10" ref={detailRef}>
+      <section className="grid w-full gap-4 sm:gap-6 md:gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+        <div className="border-4 border-black dark:border-white bg-white dark:bg-black p-3 sm:p-4 md:p-6 lg:p-8">
           <img alt={meal.strMeal} src={meal.strMealThumb} className="w-full object-cover" />
-          <div className="mt-6 space-y-4 border-t-4 border-black dark:border-white pt-6">
-            <div className="flex flex-wrap items-center gap-3">
-              <span className="bg-yellow-300 px-3 py-1 text-xs font-black uppercase text-black">{meal.strCategory}</span>
-              <span className="border-2 border-black dark:border-white px-3 py-1 text-xs font-black text-black dark:text-white">{meal.strArea}</span>
+          <div className="mt-3 sm:mt-4 md:mt-6 space-y-3 sm:space-y-4 border-t-4 border-black dark:border-white pt-3 sm:pt-4 md:pt-6">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+              <span className="bg-yellow-300 px-2 sm:px-3 py-0.5 sm:py-1 text-xs font-black uppercase text-black">{meal.strCategory}</span>
+              <span className="border-2 border-black dark:border-white px-2 sm:px-3 py-0.5 sm:py-1 text-xs font-black text-black dark:text-white">{meal.strArea}</span>
             </div>
-            <h1 className="text-4xl md:text-5xl font-black text-black dark:text-white leading-tight">{meal.strMeal}</h1>
-            <p className="text-lg font-bold text-black dark:text-white">{meal.strTags ? meal.strTags.split(',').join(' · ') : 'Detailed cooking instructions, ingredients, and a video tutorial.'}</p>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-black dark:text-white leading-tight">{meal.strMeal}</h1>
+            <p className="text-sm sm:text-base md:text-lg font-bold text-black dark:text-white">{meal.strTags ? meal.strTags.split(',').join(' · ') : 'Detailed cooking instructions, ingredients, and a video tutorial.'}</p>
             <button
               type="button"
               onClick={() => (isFavorite(meal.idMeal) ? removeFavorite(meal) : addFavorite(meal))}
-              className="border-4 border-black dark:border-white bg-yellow-300 px-6 py-3 text-sm font-black text-black transition hover:bg-yellow-400 active:translate-x-1 active:translate-y-1"
+              className="border-4 border-black dark:border-white bg-yellow-300 px-3 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm font-black text-black transition hover:bg-yellow-400 active:translate-x-1 active:translate-y-1"
             >
               {isFavorite(meal.idMeal) ? '★ SAVED' : '☆ SAVE'}
             </button>
           </div>
         </div>
 
-        <div className="space-y-6">
-          <div className="border-4 border-black dark:border-white bg-white dark:bg-black p-8">
-            <h2 className="text-3xl font-black text-black dark:text-white">INGREDIENTS</h2>
-            <ul className="mt-6 grid gap-3 text-black dark:text-white font-bold sm:grid-cols-2">
+        <div className="space-y-4 sm:space-y-6">
+          <div className="border-4 border-black dark:border-white bg-white dark:bg-black p-3 sm:p-4 md:p-6 lg:p-8">
+            <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-black text-black dark:text-white">INGREDIENTS</h2>
+            <ul className="mt-3 sm:mt-4 md:mt-6 grid gap-2 sm:gap-3 text-black dark:text-white font-bold grid-cols-1 sm:grid-cols-2">
               {ingredients.map((item) => (
-                <li key={item} className="border-3 border-black dark:border-white bg-white dark:bg-black px-3 py-2">
+                <li key={item} className="border-3 border-black dark:border-white bg-white dark:bg-black px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm">
                   {item}
                 </li>
               ))}
@@ -99,16 +99,16 @@ const RecipeDetail = () => {
                 title="Cooking tutorial"
                 src={videoEmbed}
                 allowFullScreen
-                className="h-72 w-full"
+                className="w-full aspect-video"
               />
             </div>
           ) : null}
         </div>
       </section>
 
-      <section className="border-4 border-black dark:border-white bg-white dark:bg-black p-8">
-        <h2 className="text-3xl font-black text-black dark:text-white">INSTRUCTIONS</h2>
-        <p className="mt-6 whitespace-pre-line text-lg font-bold text-black dark:text-white leading-relaxed">{meal.strInstructions}</p>
+      <section className="border-4 border-black dark:border-white bg-white dark:bg-black p-3 sm:p-4 md:p-6 lg:p-8">
+        <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-black text-black dark:text-white">INSTRUCTIONS</h2>
+        <p className="mt-3 sm:mt-4 md:mt-6 whitespace-pre-line text-sm sm:text-base md:text-lg font-bold text-black dark:text-white leading-relaxed">{meal.strInstructions}</p>
       </section>
     </div>
   );
