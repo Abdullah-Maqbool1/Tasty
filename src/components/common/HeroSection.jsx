@@ -7,7 +7,7 @@ import SearchForm from './SearchForm';
  */
 const HeroSection = ({ className = "" }) => {
   return (
-    <section className={`w-full relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border border-slate-700/50 shadow-2xl ${className}`}>
+    <section className={`w-full relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border border-slate-700/50 shadow-2xl ${className}`} style={{ backgroundImage: 'url(/hero_bg.png)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
       {/* Background pattern overlay */}
       <div className="absolute inset-0 opacity-5">
         <div className="w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
