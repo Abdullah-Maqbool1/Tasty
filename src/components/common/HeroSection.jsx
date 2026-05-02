@@ -6,12 +6,16 @@ import SearchForm from './SearchForm';
  * @param {string} props.className - Additional CSS classes
  */
 const HeroSection = ({ className = "" }) => {
-  return (
-    <section className={`w-full relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border border-slate-700/50 shadow-2xl ${className}`} style={{ backgroundImage: 'url(/hero_bg.png)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
-      {/* Background pattern overlay */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
-      </div>
+return (
+    <section className={`w-full relative overflow-hidden bg-slate-900 border border-slate-700/50 shadow-2xl min-h-[500px] ${className}`}>
+      {/* Background image */}
+      <img 
+        src="/hero_bg.png" 
+        alt="Hero background" 
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+      {/* Dark overlay for text readability */}
+      <div className="absolute inset-0 bg-slate-900/50"></div>
 
       <div className="relative p-6 sm:p-8 md:p-12 lg:p-16">
         <div className="max-w-4xl mx-auto space-y-6 sm:space-y-8">
