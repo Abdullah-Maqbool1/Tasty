@@ -1,4 +1,5 @@
 ﻿import { useState } from 'react';
+import { Button, Card, Section } from '../components';
 
 const Contact = () => {
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
@@ -35,12 +36,12 @@ const Contact = () => {
 
   return (
     <div className="w-full space-y-6 sm:space-y-8 lg:space-y-10">
-      <section className="w-full border-4 border-black dark:border-white bg-white dark:bg-black p-4 sm:p-6 md:p-8">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-black dark:text-white">CONTACT US</h1>
-        <p className="mt-3 sm:mt-4 text-sm sm:text-base md:text-lg font-bold text-black dark:text-white">Have feedback or a recipe request? Send us a message and we'll get back to you shortly.</p>
-      </section>
+      <Section
+        title="CONTACT US"
+        subtitle="Have feedback or a recipe request? Send us a message and we'll get back to you shortly."
+      />
 
-      <section className="w-full border-4 border-black dark:border-white bg-white dark:bg-black p-4 sm:p-6 md:p-8">
+      <Card variant="outlined" className="p-4 sm:p-6 md:p-8">
         {success ? <div className="mb-4 sm:mb-6 border-4 border-green-600 bg-green-100 dark:bg-green-900 p-3 sm:p-5 text-xs sm:text-sm text-green-700 dark:text-green-200 font-black">{success}</div> : null}
 
         <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
@@ -91,11 +92,16 @@ const Contact = () => {
             {errors.message ? <span className="text-xs sm:text-sm text-red-600 dark:text-red-400 font-black block">{errors.message}</span> : null}
           </label>
 
-          <button className="w-full border-4 border-black dark:border-white bg-yellow-300 px-4 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm font-black text-black transition hover:bg-yellow-400 active:translate-x-1 active:translate-y-1">
+          <Button
+            type="submit"
+            fullWidth
+            variant="outline"
+            className="border-4 border-black dark:border-white bg-yellow-300 px-4 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm font-black text-black hover:bg-yellow-400 active:translate-x-1 active:translate-y-1"
+          >
             SEND MESSAGE
-          </button>
+          </Button>
         </form>
-      </section>
+      </Card>
     </div>
   );
 };

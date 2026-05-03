@@ -16,19 +16,19 @@ const Button = ({
   className = '',
   ...props
 }) => {
-  const baseClasses = 'font-semibold transition rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2';
+  const baseClasses = 'font-black transition focus:outline-none focus:ring-2 focus:ring-offset-2';
 
   const variants = {
-    primary: 'bg-emerald-600 text-white hover:bg-emerald-700 focus:ring-emerald-500',
-    secondary: 'bg-slate-200 dark:bg-slate-700 text-slate-900 dark:text-white hover:bg-slate-300 dark:hover:bg-slate-600 focus:ring-slate-400',
-    danger: 'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500',
-    outline: 'border-2 border-black dark:border-white text-black dark:text-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black',
+    primary: 'border-4 border-black dark:border-white bg-yellow-300 text-black hover:bg-yellow-400 dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white',
+    secondary: 'border-4 border-black dark:border-white bg-white dark:bg-black text-black dark:text-white hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black',
+    danger: 'border-4 border-black dark:border-white bg-red-600 text-white hover:bg-red-700',
+    outline: 'border-4 border-black dark:border-white bg-white dark:bg-black text-black dark:text-white hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black',
   };
 
   const sizes = {
-    sm: 'px-2 py-1 text-xs',
-    md: 'px-4 py-2 text-sm',
-    lg: 'px-6 py-3 text-base',
+    sm: 'px-3 py-2 text-xs',
+    md: 'px-4 py-3 text-sm',
+    lg: 'px-6 py-4 text-base',
   };
 
   const widthClass = fullWidth ? 'w-full' : '';

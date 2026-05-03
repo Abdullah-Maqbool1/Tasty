@@ -6,43 +6,60 @@ import { useNavigate } from 'react-router-dom';
  * @param {Object} props
  * @param {Function} props.onSearch - Callback when search is submitted
  * @param {string} props.placeholder - Input placeholder text
+ * @param {string} props.buttonLabel - Submit button label
+ * @param {string} props.value - Controlled search input value
+ * @param {Function} props.onChange - Controlled search input change handler
  */
-const SearchForm = ({ onSearch, placeholder = 'Search recipes...' }) => {
-  const [search, setSearch] = useState('');
+const SearchForm = ({ onSearch, placeholder = 'Search recipes...', buttonLabel = 'Search', value, onChange }) => {
+  const [internalSearch, setInternalSearch] = useState('');
   const navigate = useNavigate();
+  const searchValue = value !== undefined ? value : internalSearch;
+
+  const handleChange = (event) => {
+    const nextValue = event.target.value;
+    if (onChange) {
+      onChange(nextValue);
+    } else {
+      setInternalSearch(nextValue);
+    }
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (search.trim()) {
+    if (searchValue.trim()) {
       if (onSearch) {
-        onSearch(search.trim());
+        onSearch(searchValue.trim());
       } else {
-        navigate(`/browse?q=${encodeURIComponent(search.trim())}`);
+        navigate(`/browse?q=${encodeURIComponent(searchValue.trim())}`);
       }
-      setSearch('');
+
+      if (value === undefined) {
+        setInternalSearch('');
+      }
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="w-full max-w-md">
-      <div className="flex gap-2 sm:gap-3">
-        <input
-          type="text"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          placeholder={placeholder}
-          className="flex-1 px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border-2 border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white rounded-lg focus:outline-none focus:border-emerald-600 dark:focus:border-emerald-400"
-          aria-label="Search for recipes"
-        />
-        <button
-          type="submit"
-          disabled={!search.trim()}
-          className="px-4 sm:px-6 py-2 sm:py-3 bg-emerald-600 text-white font-semibold rounded-lg hover:bg-emerald-700 transition disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
-        >
-          Search
-        </button>
-      </div>
+    <form onSubmit={handleSubmit} className="flex flex-col gap-2 sm:gap-3 sm:flex-row w-full max-w-md">
+      <label className="sr-only" htmlFor="shared-search-input">
+        Search recipes
+      </label>
+      <input
+        id="shared-search-input"
+        type="text"
+        value={searchValue}
+        onChange={handleChange}
+        placeholder={placeholder}
+        className="min-w-0 flex-1 border-4 border-black dark:border-white bg-white dark:bg-black px-3 sm:px-5 py-3 sm:py-4 text-sm sm:text-base text-black dark:text-white font-bold outline-none focus:bg-black dark:focus:bg-white focus:text-white dark:focus:text-black"
+      />
+      <button
+        type="submit"
+        disabled={!searchValue.trim()}
+        className="border-4 border-black dark:border-white bg-yellow-300 px-4 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm font-black text-black transition hover:bg-yellow-400 active:translate-x-1 active:translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        {buttonLabel}
+      </button>
     </form>
   );
 };

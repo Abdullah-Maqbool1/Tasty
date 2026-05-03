@@ -16,14 +16,8 @@ export { default as SearchForm } from './SearchForm';
 
 // Utility components
 export { default as Button } from './Button';
-export { default as Container } from './Container';
 export { default as Card } from './Card';
-export { default as Grid } from './Grid';
-export { default as Badge } from './Badge';
 export { default as Section } from './Section';
-export { default as Typography } from './Typography';
 
 // Feedback components
-export { default as LoadingSpinner } from './LoadingSpinner';
-export { default as ErrorMessage } from './ErrorMessage';
 export { default as EmptyState } from './EmptyState';

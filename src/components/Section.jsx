@@ -12,8 +12,8 @@ const Section = ({ children, title, subtitle, className = '', as: Component = 's
     <Component className={`w-full space-y-4 sm:space-y-6 ${className}`.trim()}>
       {(title || subtitle) && (
         <div className="space-y-2">
-          {title && <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">{title}</h2>}
-          {subtitle && <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base">{subtitle}</p>}
+          {title && <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-black dark:text-white">{title}</h2>}
+          {subtitle && <p className="text-sm sm:text-base md:text-lg font-bold text-black dark:text-white">{subtitle}</p>}
         </div>
       )}
       {children}

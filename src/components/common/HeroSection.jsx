@@ -1,35 +1,46 @@
-import SearchForm from './SearchForm';
+import SearchForm from '../SearchForm';
 
-/**
- * Hero section component for the home page
- * @param {Object} props
- * @param {string} props.className - Additional CSS classes
- */
-const HeroSection = ({ className = "" }) => {
-return (
-    <section className={`w-full relative overflow-hidden bg-slate-900 border border-slate-700/50 shadow-2xl min-h-[500px] ${className}`}>
-      {/* Background image */}
-      <img 
-        src="/hero_bg.png" 
-        alt="Hero background" 
-        className="absolute inset-0 w-full h-full object-cover"
+const HeroSection = ({ className = '', onSearch }) => {
+  return (
+    <section 
+      className={`w-full border-4 border-black dark:border-white p-4 sm:p-6 md:p-8 relative overflow-hidden ${className}`.trim()}
+      style={{ minHeight: '450px' }}
+    >
+      {/* Background Layer: Toggles between Light and Dark images */}
+      <div 
+        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat transition-all duration-500
+                   bg-[url('/hero_bg_light.png')] 
+                   dark:bg-[url('/hero_bg_dark.png')]"
+        style={{ filter: 'brightness(1.05) contrast(1.05)' }}
       />
-      {/* Dark overlay for text readability */}
-      <div className="absolute inset-0 bg-slate-900/50"></div>
 
-      <div className="relative p-6 sm:p-8 md:p-12 lg:p-16">
-        <div className="max-w-4xl mx-auto space-y-6 sm:space-y-8">
-          <span className="inline-block bg-yellow-400/10 border border-yellow-400/20 text-yellow-400 px-4 py-2 text-sm font-semibold rounded-full backdrop-blur-sm">
-            🍳 Recipe & Food Discovery
-          </span>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white leading-tight tracking-tight">
-            Discover recipes that make every meal feel{' '}
-            <span className="text-yellow-400">delicious</span>.
+      {/* Conditional Overlays: Darker for dark mode, lighter/sepia for light mode */}
+      <div className="absolute inset-0 z-10 bg-black/10 dark:bg-black/50" />
+
+      {/* Content Container */}
+      <div className="relative z-20 space-y-4 sm:space-y-5 md:space-y-6">
+        <span className="inline-block border-2 border-black dark:border-white bg-white dark:bg-black px-3 py-1 text-xs font-black uppercase text-black dark:text-white">
+          🍳 Recipe & Food Discovery
+        </span>
+        
+        <div className="max-w-4xl">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-tight 
+                         text-black dark:text-white 
+                         drop-shadow-[2px_2px_0px_rgba(255,255,255,0.8)] 
+                         dark:drop-shadow-[3px_3px_0px_rgba(0,0,0,1)]">
+            Discover recipes that make <br className="hidden md:block" />
+            every meal feel delicious.
           </h1>
-          <p className="text-lg sm:text-xl md:text-2xl text-slate-300 max-w-2xl font-medium leading-relaxed">
+        </div>
+        
+        <div className="max-w-2xl bg-white/40 dark:bg-black/40 backdrop-blur-sm p-4 border-l-4 border-black dark:border-white">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-black dark:text-white">
             Browse meals by category, explore full recipes, save your favorites, and contact us for suggestions.
           </p>
-          <SearchForm />
+        </div>
+        
+        <div className="max-w-md pt-4">
+           <SearchForm onSearch={onSearch} placeholder="Search by meal name..." buttonLabel="SEARCH" />
         </div>
       </div>
     </section>

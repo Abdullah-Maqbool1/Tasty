@@ -2,6 +2,7 @@
 import { useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 import MealCard from '../components/MealCard';
+import { SearchForm, Button, Section } from '../components';
 import { useFavorites } from '../hooks/useFavorites';
 
 const availableCategories = ['Beef', 'Chicken', 'Dessert', 'Lamb', 'Pasta', 'Seafood', 'Vegetarian'];
@@ -38,9 +39,8 @@ const Browse = () => {
     fetchMeals();
   }, [category, query]);
 
-  const handleSearch = (event) => {
-    event.preventDefault();
-    const trimmed = searchInput.trim();
+  const handleSearch = (query) => {
+    const trimmed = query.trim();
     if (trimmed) {
       setSearchParams({ q: trimmed });
     } else {
@@ -66,40 +66,33 @@ const Browse = () => {
         <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-black dark:text-white">EXPLORE RECIPES</h1>
         <p className="mt-3 sm:mt-4 text-sm sm:text-base md:text-lg font-bold text-black dark:text-white">Filter by category or search by name to find meals from TheMealDB.</p>
 
-        <form onSubmit={handleSearch} className="mt-4 sm:mt-6 flex flex-col gap-2 sm:gap-3 sm:flex-row">
-          <input
+        <div className="mt-4 sm:mt-6">
+          <SearchForm
             value={searchInput}
-            onChange={(event) => setSearchInput(event.target.value)}
+            onChange={setSearchInput}
+            onSearch={handleSearch}
             placeholder="Search recipes"
-            className="min-w-0 flex-1 border-4 border-black dark:border-white bg-white dark:bg-black px-3 sm:px-5 py-3 sm:py-4 text-sm sm:text-base text-black dark:text-white font-bold outline-none focus:bg-black dark:focus:bg-white focus:text-white dark:focus:text-black"
+            buttonLabel="SEARCH"
           />
-          <button className="border-4 border-black dark:border-white bg-yellow-300 px-4 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm font-black text-black transition hover:bg-yellow-400 active:translate-x-1 active:translate-y-1">
-            SEARCH
-          </button>
-        </form>
+        </div>
 
         <div className="mt-4 sm:mt-6 flex flex-wrap gap-2 sm:gap-3 md:gap-4">
           {availableCategories.map((option) => (
-            <button
-              type="button"
+            <Button
               key={option}
+              type="button"
+              variant={option === category ? 'primary' : 'outline'}
+              size="sm"
+              className={option === category ? 'border-4 border-black dark:border-white bg-yellow-300 text-black' : 'border-4 border-black dark:border-white bg-white dark:bg-black text-black dark:text-white hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black'}
               onClick={() => handleCategoryChange(option)}
-              className={`border-4 px-2.5 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-black transition ${option === category ? 'bg-yellow-300 text-black border-black dark:border-white' : 'border-black dark:border-white bg-white dark:bg-black text-black dark:text-white hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black'}`}
             >
               {option.toUpperCase()}
-            </button>
+            </Button>
           ))}
         </div>
       </section>
 
-      <section className="space-y-4 sm:space-y-6">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
-          <div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-black dark:text-white">RESULTS</h2>
-            <p className="text-sm sm:text-base md:text-lg font-bold text-black dark:text-white">{resultsMessage}</p>
-          </div>
-        </div>
-
+      <Section title="RESULTS" subtitle={resultsMessage}>
         {loading ? (
           <div className="border-4 border-black dark:border-white bg-white dark:bg-black p-4 sm:p-6 md:p-8 text-center text-sm sm:text-base text-black dark:text-white font-black">Loading meals…</div>
         ) : error ? (
@@ -117,7 +110,7 @@ const Browse = () => {
             ))}
           </div>
         )}
-      </section>
+      </Section>
     </div>
   );
 };
